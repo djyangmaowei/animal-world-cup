@@ -18,6 +18,11 @@ Pick from 8 animal national teams, set your formation, and watch fully simulated
 
 ## 中文
 
+> **项目来源**
+> 本项目基于 [HappySeeds](https://happyseeds.ai/) 平台上的原创作品
+> [Animal Cup](https://app-ce3abc4512.happyseeds.space/) Remix 后，
+> 使用 **Claude Code** 进行二次开发并开源。
+
 ### 🎮 简介
 
 Animal Cup 灵感来自经典街机足球游戏。你从 8 支动物国家队中选择队伍、设置阵型，然后观看一场完全模拟的 7v7 比赛，并实时查看比赛数据。整个游戏为移动端优化，随时随地都能玩，同时支持局域网多人对战。
@@ -92,6 +97,11 @@ pnpm dev:lan
 <a name="english"></a>
 
 ## English
+
+> **Origin**
+> This project is derived from the original
+> [Animal Cup](https://app-ce3abc4512.happyseeds.space/) on
+> [HappySeeds](https://happyseeds.ai/), remixed and rebuilt with **Claude Code**.
 
 ### 🎮 Overview
 
