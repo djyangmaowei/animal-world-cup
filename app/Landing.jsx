@@ -12,6 +12,7 @@ import LangSwitcher from "./i18n/LangSwitcher";
 import { useLocale } from "./i18n/LocaleProvider";
 import { PLAYABLE_TEAMS, portraitSrc, runtimeHeadSrc } from "./data/teams";
 import { FORMATIONS } from "./data/formations";
+import { normalizeRoomCode } from "../online/shared";
 import FormationDiagram from "./ui/FormationDiagram";
 import css from "./Landing.module.css";
 
@@ -60,6 +61,16 @@ function LanIcon() {
       <rect x="2.5" y="4" width="8" height="16" rx="2" />
       <rect x="13.5" y="4" width="8" height="16" rx="2" />
       <path d="M6.5 17.2h0M17.5 17.2h0" />
+    </svg>
+  );
+}
+
+function OnlineIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+         strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M3.5 12h17M12 3.5c2.4 2.5 3.6 5.3 3.6 8.5S14.4 18 12 20.5C9.6 18 8.4 15.2 8.4 12S9.6 6 12 3.5Z" />
     </svg>
   );
 }
@@ -143,6 +154,8 @@ export default function Landing() {
   const [diff, setDiff] = useState(0);
   const [time, setTime] = useState(6); // full-match minutes (default: normal)
   const [side, setSide] = useState("home"); // your team's kit: home / away
+  const [onlineOpen, setOnlineOpen] = useState(false);
+  const [joinCode, setJoinCode] = useState("");
 
   const router = useRouter();
   useEffect(() => {
@@ -195,6 +208,27 @@ export default function Landing() {
   // keyboard — each plays from their own phone over the local network.
   function goLan() {
     router.push(`/lobby?red=${mine}&blue=${opp}&ai=${diff}&side=${side}&time=${time}`);
+  }
+
+  function goOnline(mode) {
+    const params = new URLSearchParams({
+      create: mode,
+      red: mine,
+      blue: opp,
+      ai: String(diff),
+      side,
+      time: String(time),
+      redForm: mineForm,
+      blueForm: oppForm,
+    });
+    router.push(`/online?${params.toString()}`);
+  }
+
+  function joinOnline(event) {
+    event.preventDefault();
+    const room = normalizeRoomCode(joinCode);
+    if (room.length !== 6) return;
+    router.push(`/online?room=${room}`);
   }
 
   return (
@@ -263,8 +297,41 @@ export default function Landing() {
           <button type="button" className={css.lan} onClick={goLan}>
             <LanIcon /> {t("home.lan")}
           </button>
+          <button type="button" className={css.online} onClick={() => setOnlineOpen(true)}>
+            <OnlineIcon /> {t("home.online")}
+          </button>
         </div>
       </div>
+
+      {onlineOpen ? (
+        <div className={css.onlineBackdrop} role="presentation" onClick={() => setOnlineOpen(false)}>
+          <section className={css.onlineDialog} role="dialog" aria-modal="true"
+                   aria-labelledby="online-title" onClick={(event) => event.stopPropagation()}>
+            <header className={css.onlineHead}>
+              <h2 id="online-title">{t("online.choose")}</h2>
+              <button type="button" className={css.onlineClose} onClick={() => setOnlineOpen(false)}
+                      aria-label={t("online.close")}>×</button>
+            </header>
+            <div className={css.onlineModes}>
+              <button type="button" className={css.onlineMode} onClick={() => goOnline("direct")}>
+                <CtrlIcon /> <span>{t("online.direct")}</span>
+              </button>
+              <button type="button" className={css.onlineMode} onClick={() => goOnline("controllers")}>
+                <LanIcon /> <span>{t("online.controllers")}</span>
+              </button>
+            </div>
+            <form className={css.onlineJoin} onSubmit={joinOnline}>
+              <input value={joinCode}
+                     onChange={(event) => setJoinCode(normalizeRoomCode(event.target.value))}
+                     placeholder={t("online.code")} maxLength={6} autoCapitalize="characters"
+                     autoCorrect="off" spellCheck={false} aria-label={t("online.code")} />
+              <button type="submit" disabled={normalizeRoomCode(joinCode).length !== 6}>
+                {t("online.join")}
+              </button>
+            </form>
+          </section>
+        </div>
+      ) : null}
     </main>
   );
 }

@@ -207,12 +207,14 @@ export default function MatchChrome() {
   // keyboard legend; touch devices get on-screen joystick + buttons instead.
   const [play, setPlay] = useState(false);
   const [touch, setTouch] = useState(false);
+  const [onlineInput, setOnlineInput] = useState(null);
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const modes = ["morning", "noon", "night"];
     const q = params.get("light");
     setLight(modes.includes(q) ? q : modes[Math.floor(Math.random() * modes.length)]);
     setPlay(params.get("play") === "1");
+    setOnlineInput(params.get("onlineInput"));
     setTouch(
       params.get("touch") === "1" ||
       (typeof window !== "undefined" &&
@@ -327,7 +329,11 @@ export default function MatchChrome() {
                       ref={(el) => {
                         if (el && !el.__rematchWired) {
                           el.__rematchWired = true;
-                          el.addEventListener("click", () => { sfx.play("ui_click"); window.location.reload(); });
+                          el.addEventListener("click", () => {
+                            sfx.play("ui_click");
+                            if (typeof window.__onlineRematch === "function") window.__onlineRematch();
+                            else window.location.reload();
+                          });
                         }
                       }}>
                 {t("match.rematch")}
@@ -347,8 +353,8 @@ export default function MatchChrome() {
       ) : null}
 
 
-      {play && !touch && !result ? <ControlsLegend t={t} /> : null}
-      {play && touch && !loading && !result ? <TouchControls /> : null}
+      {play && onlineInput !== "pads" && !touch && !result ? <ControlsLegend t={t} /> : null}
+      {play && onlineInput !== "pads" && touch && !loading && !result ? <TouchControls /> : null}
 
       <MatchEvents />
 
