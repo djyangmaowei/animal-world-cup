@@ -48,6 +48,7 @@ const SOUNDS = [
   { id: "cheer_eagle",   text: "a piercing raptor screech, the classic sharp descending red-tailed hawk style eagle cry, two calls, wildlife recording, no background noise", duration: 1.8, influence: 0.75 },
   { id: "cheer_bull",    text: "a big fighting bull bellowing loudly with a deep chesty moo-roar followed by a strong nostril snort, close recording, no background noise",   duration: 2.0, influence: 0.75 },
   { id: "cheer_rooster", text: "a loud clear rooster crowing one full cock-a-doodle-doo at dawn, proud and bright, close farmyard recording, no background noise",            duration: 2.2, influence: 0.75 },
+  { id: "cheer_turtle",  text: "a short Atlantic ocean wave impact blended with a subtle low sea turtle vocal texture and a warm football stadium celebration, island team goal sting, no speech", duration: 2.2, influence: 0.7 },
   { id: "ui_click",         text: "a soft woody paper-craft button click, gentle and cozy, very short",                          duration: 0.3 },
   { id: "ui_select",        text: "a soft cheerful pop confirming a menu selection, cozy cartoon, short",                        duration: 0.4 },
 ];

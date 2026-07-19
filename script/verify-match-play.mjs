@@ -12,7 +12,7 @@
 import { chromium } from "playwright-core";
 
 const baseUrl = process.argv[2] || "http://localhost:13000";
-const matchUrl = `${baseUrl}/match?red=argentina&blue=portugal&play=1`;
+const matchUrl = process.argv[3] || `${baseUrl}/match?red=argentina&blue=portugal&play=1`;
 const HARD_TIMEOUT_MS = 90_000;
 
 const hardTimer = setTimeout(() => {

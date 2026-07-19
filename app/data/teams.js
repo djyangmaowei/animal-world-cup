@@ -9,6 +9,7 @@ export const PLAYABLE_TEAMS = [
   { id: "brazil", shortName: "BRA", palette: ["#edcf49", "#148e57", "#245bab"] },
   { id: "argentina", shortName: "ARG", palette: ["#8ed3f3", "#ffffff", "#c99b6b"] },
   { id: "usa", shortName: "USA", palette: ["#263f7b", "#f7f1e7", "#c83d43"] },
+  { id: "cape_verde", shortName: "CPV", palette: ["#16549a", "#f4efe2", "#d64536"] },
 ];
 
 export function portraitSrc(id) {

@@ -1,6 +1,6 @@
 # Cape Verde team art checkpoint
 
-Status: source-art review; not integrated into the playable team list.
+Status: approved and integrated as the ninth playable team.
 
 ## Art direction
 
@@ -69,7 +69,7 @@ Status: source-art review; not integrated into the playable team list.
 - runtime bundle and directory-list entries
 - playable-team entry and localized UI strings
 
-## Approval gate
+## Integration status
 
-Do not slice, install, bundle, or register the new team until the art direction,
-character identity, and three kits are approved.
+The approved v2 art has been sliced, installed, bundled, and registered. The
+`cape-verde-art-approved-v1` Git tag preserves the pre-integration checkpoint.

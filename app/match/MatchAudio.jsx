@@ -14,6 +14,7 @@ const CHEER = {
   spain: "cheer_bull",
   france: "cheer_rooster",
   usa: "cheer_eagle",
+  cape_verde: "cheer_turtle",
 };
 
 // Wires match SFX to the events the adapter broadcasts. No-ops while muted
