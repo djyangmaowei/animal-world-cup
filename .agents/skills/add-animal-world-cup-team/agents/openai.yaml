@@ -1,0 +1,4 @@
+interface:
+  display_name: "Add Animal World Cup Team"
+  short_description: "Produce and integrate a complete new animal football team"
+  default_prompt: "Use $add-animal-world-cup-team to add a production-ready animal national team to this game."
