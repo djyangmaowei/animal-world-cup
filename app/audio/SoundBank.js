@@ -13,8 +13,9 @@ const BASE = "/animal-cup/audio/";
 const WARM = [
   "cheer_lion", "cheer_jaguar", "cheer_puma", "cheer_wolf", "cheer_eagle",
   "cheer_bull", "cheer_rooster", "goal_cheer", "shot", "pass", "whistle_kickoff",
-  "cheer_turtle",
+  "cheer_turtle", "cheer_panda", "cheer_reindeer", "cheer_macaque",
 ];
+const WAV = new Set(["cheer_turtle", "cheer_panda", "cheer_reindeer", "cheer_macaque"]);
 
 class SoundBank {
   constructor() {
@@ -54,7 +55,7 @@ class SoundBank {
     if (this.loading[id]) return this.loading[id];
     const ctx = this._ctx();
     if (!ctx) return Promise.resolve(null);
-    const extension = id === "cheer_turtle" ? ".wav" : ".mp3";
+    const extension = WAV.has(id) ? ".wav" : ".mp3";
     this.loading[id] = fetch(BASE + id + extension)
       .then((r) => r.arrayBuffer())
       // callback form of decodeAudioData — works on every browser incl. old Safari

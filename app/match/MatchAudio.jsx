@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react";
 import { sfx } from "../audio/SoundBank";
 
-// Goal celebration = the scoring nation's animal call (owner spec). 8 teams →
-// their animal's cheer; the two eagle nations share one screech.
+// Goal celebration = the scoring nation's animal call (owner spec); the two
+// eagle nations share one screech.
 const CHEER = {
   england: "cheer_lion",
   brazil: "cheer_jaguar",
@@ -15,6 +15,9 @@ const CHEER = {
   france: "cheer_rooster",
   usa: "cheer_eagle",
   cape_verde: "cheer_turtle",
+  china: "cheer_panda",
+  norway: "cheer_reindeer",
+  japan: "cheer_macaque",
 };
 
 // Wires match SFX to the events the adapter broadcasts. No-ops while muted

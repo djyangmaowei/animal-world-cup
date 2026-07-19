@@ -184,5 +184,8 @@
   "home.matchTime": "比赛时长",
   "home.time.short": "短",
   "home.time.normal": "标准",
-  "home.time.long": "长"
+  "home.time.long": "长",
+  "team.china.name": "中国", "team.china.animal": "大熊猫", "team.china.kit": "中国红与玉白", "team.china.trait": "耐心压迫",
+  "team.norway.name": "挪威", "team.norway.animal": "驯鹿", "team.norway.kit": "峡湾红与冰川白", "team.norway.trait": "北境耐力",
+  "team.japan.name": "日本", "team.japan.animal": "日本猕猴", "team.japan.kit": "靛蓝与樱白", "team.japan.trait": "快速配合"
 }

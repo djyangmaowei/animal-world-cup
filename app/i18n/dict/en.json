@@ -184,5 +184,8 @@
   "home.matchTime": "Match length",
   "home.time.short": "Short",
   "home.time.normal": "Normal",
-  "home.time.long": "Long"
+  "home.time.long": "Long",
+  "team.china.name": "China", "team.china.animal": "Giant Panda", "team.china.kit": "China red & jade white", "team.china.trait": "Patient pressing",
+  "team.norway.name": "Norway", "team.norway.animal": "Reindeer", "team.norway.kit": "Fjord red & glacier white", "team.norway.trait": "Northern endurance",
+  "team.japan.name": "Japan", "team.japan.animal": "Japanese Macaque", "team.japan.kit": "Indigo & sakura white", "team.japan.trait": "Quick combinations"
 }

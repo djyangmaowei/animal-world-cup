@@ -1,4 +1,4 @@
-// Playable squads (match engine has full assets for these 8).
+// Playable squads (match engine has full assets for these teams).
 // Display names/animals/traits live in the i18n dictionaries (team.<id>.*).
 export const PLAYABLE_TEAMS = [
   { id: "england", shortName: "ENG", palette: ["#f7f0df", "#c54539", "#ddb24d"] },
@@ -10,6 +10,9 @@ export const PLAYABLE_TEAMS = [
   { id: "argentina", shortName: "ARG", palette: ["#8ed3f3", "#ffffff", "#c99b6b"] },
   { id: "usa", shortName: "USA", palette: ["#263f7b", "#f7f1e7", "#c83d43"] },
   { id: "cape_verde", shortName: "CPV", palette: ["#16549a", "#f4efe2", "#d64536"] },
+  { id: "china", shortName: "CHN", palette: ["#c92f2f", "#f2eee2", "#d8ad3d"] },
+  { id: "norway", shortName: "NOR", palette: ["#ba2e35", "#f4f0e5", "#164c50"] },
+  { id: "japan", shortName: "JPN", palette: ["#1b4f95", "#f4efe6", "#d44a4a"] },
 ];
 
 export function portraitSrc(id) {

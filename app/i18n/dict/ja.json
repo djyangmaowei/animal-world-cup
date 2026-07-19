@@ -138,5 +138,8 @@
   "home.matchTime": "試合時間",
   "home.time.short": "短い",
   "home.time.normal": "標準",
-  "home.time.long": "長い"
+  "home.time.long": "長い",
+  "team.china.name": "中国", "team.china.animal": "ジャイアントパンダ", "team.china.kit": "中国紅×玉白", "team.china.trait": "粘り強いプレス",
+  "team.norway.name": "ノルウェー", "team.norway.animal": "トナカイ", "team.norway.kit": "フィヨルド赤×氷河白", "team.norway.trait": "北欧の持久力",
+  "team.japan.name": "日本", "team.japan.animal": "ニホンザル", "team.japan.kit": "藍色×桜白", "team.japan.trait": "素早い連係"
 }
