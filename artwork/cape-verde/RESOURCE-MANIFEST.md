@@ -8,9 +8,10 @@ Status: source-art review; not integrated into the playable team list.
 - Code: `CPV`
 - Mascot: Atlantic loggerhead sea turtle
 - Character idea: calm, resilient, endurance-focused island counter-attacker
-- Home: Atlantic navy, white chest band, thin red stripe, ten golden stars
+- Home: Atlantic navy, white chest band, thin red stripe, golden volcanic-island and white-wave crest
 - Away: volcanic-sand white, navy shoulders, red trim
 - Goalkeeper: volcanic charcoal, gold panels, blue gloves
+- Crest rule: no championship stars; the island-and-wave motif represents Cape Verde's volcanic archipelago and Atlantic identity
 
 ## Produced source art
 
@@ -19,6 +20,15 @@ Status: source-art review; not integrated into the playable team list.
 - `cape-verde-portrait.png` -- transparent full-resolution portrait
 - `cape-verde-portrait-512.png` -- transparent 512x512 selectable-team portrait candidate
 - `cape-verde-parts-sheet-chroma.png` -- 4x4 source sheet for race and kit component extraction
+
+### Revised v2 art (current approval candidate)
+
+- `cape-verde-art-direction-v2.png` -- three-kit direction board with all stars replaced by the island-and-wave crest
+- `cape-verde-portrait-chroma-v2.png` -- revised portrait source on green screen
+- `cape-verde-portrait-v2.png` -- revised transparent full-resolution portrait
+- `cape-verde-portrait-512-v2.png` -- revised transparent 512x512 selectable-team portrait candidate
+- `cape-verde-parts-sheet-chroma-v2.png` -- revised 4x4 source sheet; all three shirt fronts use the island-and-wave crest
+- The original files remain versioned for visual history; use the `v2` files for approval and later extraction.
 
 ## Runtime assets required after approval
 
