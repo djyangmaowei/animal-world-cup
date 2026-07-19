@@ -21,7 +21,8 @@
     "next": "15.5.19",
     "qrcode": "^1.5.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "ws": "^8.18.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250109.0",
@@ -30,8 +31,7 @@
     "playwright-core": "^1.61.1",
     "sharp": "^0.34.5",
     "typescript": "5.8.2",
-    "wrangler": "^4.86.0",
-    "ws": "^8.18.0"
+    "wrangler": "^4.86.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
