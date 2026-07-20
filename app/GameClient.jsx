@@ -158,7 +158,12 @@ async function bootRuntime() {
   // The shim needs the bundle when setupCollections() runs — by then the
   // 6.9MB bundle should be done (it downloads concurrently with scripts).
   // If not, the shim falls back to sync XHR (which hits SW cache if ready).
-  const allScripts = [...baseScripts, getGameBundleScript(), `${runtimeBase}/standalone-match.js`];
+  const allScripts = [
+    ...baseScripts,
+    getGameBundleScript(),
+    `${runtimeBase}/shot-fx.js`,
+    `${runtimeBase}/standalone-match.js`,
+  ];
 
   // Fire-and-forget: data bundle downloads in background
   const bundlePromise = fetch(`${runtimeBase}/__data-bundle.json`)

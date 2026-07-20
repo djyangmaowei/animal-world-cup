@@ -13,9 +13,9 @@ const BASE = "/animal-cup/audio/";
 const WARM = [
   "cheer_lion", "cheer_jaguar", "cheer_puma", "cheer_wolf", "cheer_eagle",
   "cheer_bull", "cheer_rooster", "goal_cheer", "shot", "pass", "whistle_kickoff",
-  "cheer_turtle", "cheer_panda", "cheer_reindeer", "cheer_macaque",
+  "cheer_turtle", "cheer_panda", "cheer_reindeer", "cheer_macaque", "fire_shot",
 ];
-const WAV = new Set(["cheer_turtle", "cheer_panda", "cheer_reindeer", "cheer_macaque"]);
+const WAV = new Set(["cheer_turtle", "cheer_panda", "cheer_reindeer", "cheer_macaque", "fire_shot"]);
 
 class SoundBank {
   constructor() {

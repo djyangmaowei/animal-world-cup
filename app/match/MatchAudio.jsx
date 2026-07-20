@@ -50,6 +50,10 @@ export default function MatchAudio() {
     window.addEventListener("ab-kickoff-played", onKickoff);
     window.addEventListener("ab-goal", onGoal);
     window.addEventListener("ab-match-ended", onEnd);
+    const onSpecialShot = (event) => {
+      if (event.detail?.type === "fire") sfx.play("fire_shot", { volume: 0.9 });
+    };
+    window.addEventListener("ab-shot", onSpecialShot);
 
     // Kick sounds (owner: 射门一种音、传球一种音). The engine has no bindable
     // kick signal at the React seam, so poll the live ball speed each frame and
@@ -83,6 +87,7 @@ export default function MatchAudio() {
       window.removeEventListener("ab-kickoff-played", onKickoff);
       window.removeEventListener("ab-goal", onGoal);
       window.removeEventListener("ab-match-ended", onEnd);
+      window.removeEventListener("ab-shot", onSpecialShot);
       cancelAnimationFrame(raf);
       sfx.stopAmbience();
       sfx.stopMusic();
