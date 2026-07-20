@@ -107,10 +107,28 @@ try {
     return { active: fx.state.active, aura: fx.parts.aura.visible };
   });
 
+  await page.goto(`${baseUrl}/match?red=england&blue=france&play=1`, { waitUntil: "domcontentloaded" });
+  await page.waitForFunction(() => window.__matchGame?.stadium?.ballRenderer?.__fireShotFx, null, { timeout: 45000 });
+  await page.waitForFunction(() => {
+    const game = window.__matchGame;
+    return game?.pitch?.matchStarted && !game.pitch.ballOutOfPlay;
+  }, null, { timeout: 30000 });
+  await giveBallToPlayer(0);
+  await page.waitForTimeout(120);
+  await page.evaluate(() => { window.__touchInput.shoot = true; });
+  await page.waitForTimeout(2050);
+  await page.evaluate(() => { window.__touchInput.shoot = false; });
+  await page.waitForTimeout(600);
+  const otherTeam = await page.evaluate(() => {
+    const fx = window.__matchGame.stadium.ballRenderer.__fireShotFx;
+    return { events: window.__fireShotEvents, active: fx.state.active, aura: fx.parts.aura.visible };
+  });
+
   const ok = normal.events === 0 && !normal.active && charged.events.length === 1 &&
-    charged.events[0].type === "fire" && charged.active && charged.aura &&
+    charged.events[0].type === "fire" && charged.events[0].team === "china" && charged.active && charged.aura &&
+    otherTeam.events.length === 0 && !otherTeam.active && !otherTeam.aura &&
     !ended.active && !ended.aura && errors.length === 0;
-  console.log(JSON.stringify({ ok, normal, charged, ended, errors }, null, 2));
+  console.log(JSON.stringify({ ok, normal, charged, ended, otherTeam, errors }, null, 2));
   process.exitCode = ok ? 0 : 1;
 } finally {
   await browser.close();

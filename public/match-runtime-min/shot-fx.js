@@ -2,8 +2,17 @@
 (function () {
   "use strict";
 
+  var SPECIAL_SHOTS = { china: "fire" };
   var state = { active: false, age: 0, duration: 1.15 };
+  var teamIds = { red: null, blue: null };
   var installed = false;
+
+  function teamIdFor(player) {
+    var pitch = window.__matchGame && window.__matchGame.pitch;
+    if (!pitch || !player || !player.team) return null;
+    return player.team === pitch.redTeam ? teamIds.red :
+      player.team === pitch.blueTeam ? teamIds.blue : null;
+  }
 
   function hide(parts) {
     parts.aura.visible = false;
@@ -42,9 +51,10 @@
     renderer.__fireShotFx = { state: state, parts: parts };
 
     window.require("player").Player.onKick.connect(function (player, target, direction, force) {
-      if (!player.user || force < 17.2) return;
+      var shotType = SPECIAL_SHOTS[teamIdFor(player)];
+      if (!player.user || force < 17.2 || !shotType) return;
       window.dispatchEvent(new CustomEvent("ab-shot", {
-        detail: { type: "fire", power: force },
+        detail: { type: shotType, power: force, team: teamIdFor(player) },
       }));
     });
 
@@ -92,7 +102,11 @@
     };
   }
 
-  window.addEventListener("ab-match-started", install);
+  window.addEventListener("ab-match-started", function (event) {
+    teamIds.red = event.detail && event.detail.red;
+    teamIds.blue = event.detail && event.detail.blue;
+    install();
+  });
   window.addEventListener("ab-shot", function (event) {
     if (!event.detail || event.detail.type !== "fire") return;
     install();
