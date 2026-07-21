@@ -51,7 +51,7 @@ export default function MatchAudio() {
     window.addEventListener("ab-goal", onGoal);
     window.addEventListener("ab-match-ended", onEnd);
     const onSpecialShot = (event) => {
-      if (event.detail?.type === "fire") sfx.play("fire_shot", { volume: 0.9 });
+      if (event.detail?.audio) sfx.play(event.detail.audio, { volume: 0.9 });
     };
     window.addEventListener("ab-shot", onSpecialShot);
 

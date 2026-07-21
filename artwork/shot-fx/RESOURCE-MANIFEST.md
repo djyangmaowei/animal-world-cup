@@ -7,4 +7,4 @@
 
 Art direction: warm orange-red cartoon fire, bright yellow core, soft glow, no text, matching the game's friendly animal-football presentation.
 
-Runtime ownership: China's hidden full-charge shot effect. Other teams retain the standard shot presentation.
+Runtime ownership: China's hidden full-charge shot effect. The other playable teams now have their own effects documented in `artwork/team-shot-fx/RESOURCE-MANIFEST.md`.

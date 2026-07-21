@@ -9,13 +9,17 @@
 // overlapping one-shots are free. Brand-new ElevenLabs audio under
 // /animal-cup/audio/. Every call no-ops cleanly if a file/decode fails.
 const BASE = "/animal-cup/audio/";
+const TEAM_SHOTS = [
+  "shot_england", "shot_france", "shot_germany", "shot_spain", "shot_portugal",
+  "shot_brazil", "shot_argentina", "shot_usa", "shot_cape_verde", "shot_norway", "shot_japan",
+];
 // Decoded the moment audio unlocks, so the first goal cheer has no fetch lag.
 const WARM = [
   "cheer_lion", "cheer_jaguar", "cheer_puma", "cheer_wolf", "cheer_eagle",
   "cheer_bull", "cheer_rooster", "goal_cheer", "shot", "pass", "whistle_kickoff",
-  "cheer_turtle", "cheer_panda", "cheer_reindeer", "cheer_macaque", "fire_shot",
+  "cheer_turtle", "cheer_panda", "cheer_reindeer", "cheer_macaque", "fire_shot", ...TEAM_SHOTS,
 ];
-const WAV = new Set(["cheer_turtle", "cheer_panda", "cheer_reindeer", "cheer_macaque", "fire_shot"]);
+const WAV = new Set(["cheer_turtle", "cheer_panda", "cheer_reindeer", "cheer_macaque", "fire_shot", ...TEAM_SHOTS]);
 
 class SoundBank {
   constructor() {

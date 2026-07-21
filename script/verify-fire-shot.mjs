@@ -120,15 +120,49 @@ try {
   await page.evaluate(() => { window.__touchInput.shoot = false; });
   await page.waitForTimeout(600);
   const otherTeam = await page.evaluate(() => {
-    const fx = window.__matchGame.stadium.ballRenderer.__fireShotFx;
-    return { events: window.__fireShotEvents, active: fx.state.active, aura: fx.parts.aura.visible };
+    const fx = window.__matchGame.stadium.ballRenderer.__teamShotFx;
+    return {
+      events: window.__fireShotEvents,
+      active: fx.state.active,
+      aura: fx.parts.aura.visible,
+      profile: fx.state.profile?.key,
+    };
   });
+  await page.screenshot({ path: "/tmp/animal-cup-england-shot.png" });
+
+  const runtimeCoverage = await page.evaluate(async () => {
+    const fx = window.__matchGame.stadium.ballRenderer.__teamShotFx;
+    const results = [];
+    for (const [team, profile] of Object.entries(fx.profiles)) {
+      window.dispatchEvent(new CustomEvent("ab-shot", {
+        detail: { type: profile.key, audio: profile.audio, power: 17.5, team },
+      }));
+      await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      const textures = fx.textures[team];
+      const trailReady = !!(textures.trail.valid || textures.trail.baseTexture?.hasLoaded || textures.trail.width > 1);
+      const impactReady = !!(textures.impact.valid || textures.impact.baseTexture?.hasLoaded || textures.impact.width > 1);
+      const audio = await fetch(`/animal-cup/audio/${profile.audio}.wav`);
+      results.push({
+        team,
+        key: profile.key,
+        activeKey: fx.state.profile?.key,
+        trailReady,
+        impactReady,
+        audioStatus: audio.status,
+      });
+    }
+    return results;
+  });
+  const runtimeCoverageOk = runtimeCoverage.length === 12 && runtimeCoverage.every((item) =>
+    item.key === item.activeKey && item.trailReady && item.impactReady && item.audioStatus === 200
+  );
 
   const ok = normal.events === 0 && !normal.active && charged.events.length === 1 &&
     charged.events[0].type === "fire" && charged.events[0].team === "china" && charged.active && charged.aura &&
-    otherTeam.events.length === 0 && !otherTeam.active && !otherTeam.aura &&
-    !ended.active && !ended.aura && errors.length === 0;
-  console.log(JSON.stringify({ ok, normal, charged, ended, otherTeam, errors }, null, 2));
+    otherTeam.events.length === 1 && otherTeam.events[0].type === "lionheart" &&
+    otherTeam.events[0].team === "england" && otherTeam.active && otherTeam.aura && otherTeam.profile === "lionheart" &&
+    runtimeCoverageOk && !ended.active && !ended.aura && errors.length === 0;
+  console.log(JSON.stringify({ ok, normal, charged, ended, otherTeam, runtimeCoverage, errors }, null, 2));
   process.exitCode = ok ? 0 : 1;
 } finally {
   await browser.close();
